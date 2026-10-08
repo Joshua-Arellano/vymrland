@@ -1,0 +1,130 @@
+// Vymrland menu extensions (merged over Omarchy's defaults by id).
+//
+// setup.vymrland nests under the existing "setup" root menu. The ROG Z13
+// submenu is machine-specific (asusctl 6.4 syntax). Hot-reloads on save.
+
+{
+  // --- Setup > Vymrland ---------------------------------------------------
+  "setup.vymrland": {
+    "icon": "",
+    "label": "Vymrland",
+    "description": "Personal Omarchy customization layer"
+  },
+
+  "setup.vymrland.configs": {
+    "icon": "",
+    "label": "Configs",
+    "title": "Vymrland Configs"
+  },
+  "setup.vymrland.configs.hypr": {
+    "icon": "",
+    "label": "Hyprland",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/hypr\""
+  },
+  "setup.vymrland.configs.zellij": {
+    "icon": "",
+    "label": "Zellij",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/zellij/config.kdl\""
+  },
+  "setup.vymrland.configs.nvim": {
+    "icon": "",
+    "label": "Neovim",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/nvim\""
+  },
+  "setup.vymrland.configs.shell": {
+    "icon": "",
+    "label": "Shell",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/zsh/.zshrc\""
+  },
+  "setup.vymrland.configs.repo": {
+    "icon": "",
+    "label": "Whole repo",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland\""
+  },
+
+  "setup.vymrland.theme": {
+    "icon": "",
+    "label": "Set cyan theme",
+    "action": "omarchy-theme-set cyan && notify-send -a Vymrland 'Vymrland' 'Theme: cyan'",
+    "checked": "[[ \"$(omarchy-theme-current)\" == \"cyan\" ]]"
+  },
+
+  "setup.vymrland.tui": {
+    "icon": "",
+    "label": "TUI apps",
+    "title": "TUI apps"
+  },
+  "setup.vymrland.tui.btop": { "icon": "", "label": "btop", "action": "omarchy-launch-or-focus-tui btop" },
+  "setup.vymrland.tui.yazi": { "icon": "", "label": "yazi", "action": "omarchy-launch-or-focus-tui yazi" },
+  "setup.vymrland.tui.gitui": { "icon": "", "label": "gitui", "action": "omarchy-launch-or-focus-tui gitui" },
+  "setup.vymrland.tui.cmus": { "icon": "", "label": "cmus", "action": "omarchy-launch-or-focus-tui cmus" },
+  "setup.vymrland.tui.neomutt": { "icon": "", "label": "neomutt", "action": "omarchy-launch-or-focus-tui neomutt" },
+  "setup.vymrland.tui.zellij": { "icon": "", "label": "zellij", "action": "omarchy-launch-or-focus-tui zellij" },
+  "setup.vymrland.tui.termusic": { "icon": "", "label": "termusic", "action": "omarchy-launch-or-focus-tui termusic" },
+
+  "setup.vymrland.update": {
+    "icon": "",
+    "label": "Update (git pull + apply)",
+    "action": "omarchy-launch-floating-terminal-with-presentation \"vymrland update\""
+  },
+  "setup.vymrland.reinstall": {
+    "icon": "",
+    "label": "Reinstall / re-apply",
+    "action": "omarchy-launch-floating-terminal-with-presentation \"vymrland apply\""
+  },
+
+  // --- ROG Flow Z13 (2025) hardware controls ------------------------------
+  "rog": {
+    "icon": "",
+    "label": "ROG Z13",
+    "description": "Power profiles, fans, battery, keyboard backlight"
+  },
+  "rog.performance": {
+    "icon": "",
+    "label": "Profile: Performance",
+    "action": "asusctl profile set Performance && notify-send 'ROG Z13' 'Profile: Performance'",
+    "checked": "asusctl profile get | grep -q 'Active profile: Performance'"
+  },
+  "rog.balanced": {
+    "icon": "",
+    "label": "Profile: Balanced",
+    "action": "asusctl profile set Balanced && notify-send 'ROG Z13' 'Profile: Balanced'",
+    "checked": "asusctl profile get | grep -q 'Active profile: Balanced'"
+  },
+  "rog.quiet": {
+    "icon": "",
+    "label": "Profile: Quiet",
+    "action": "asusctl profile set Quiet && notify-send 'ROG Z13' 'Profile: Quiet'",
+    "checked": "asusctl profile get | grep -q 'Active profile: Quiet'"
+  },
+  "rog.battery80": {
+    "icon": "",
+    "label": "Charge limit: 80%",
+    "description": "Recommended for daily use",
+    "action": "asusctl battery limit 80 && notify-send 'ROG Z13' 'Charge limit: 80%'",
+    "checked": "asusctl battery info | grep -q 'limit: 80%'"
+  },
+  "rog.battery100": {
+    "icon": "",
+    "label": "Charge limit: 100%",
+    "description": "For travel or long gaming sessions",
+    "action": "asusctl battery limit 100 && notify-send 'ROG Z13' 'Charge limit: 100%'",
+    "checked": "asusctl battery info | grep -q 'limit: 100%'"
+  },
+  "rog.keyboard": {
+    "icon": "",
+    "label": "Cycle keyboard backlight",
+    "action": "asusctl leds next && notify-send 'ROG Z13' \"Backlight: $(asusctl leds get)\""
+  },
+  "rog.osk": {
+    "icon": "󰌌",
+    "label": "Toggle on-screen keyboard",
+    "description": "For tablet use with the keyboard detached",
+    "action": "omarchy-toggle-osk"
+  },
+  "rog.temps": {
+    "icon": "",
+    "label": "Live fan & temperature monitor",
+    "action": "omarchy-launch-or-focus-tui \"watch -n2 sensors\""
+  }
+}

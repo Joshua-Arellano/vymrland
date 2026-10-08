@@ -1,0 +1,9 @@
+# Vymrland state and secrets
+*.bak
+*.bak.*
+*.pre-*
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*~

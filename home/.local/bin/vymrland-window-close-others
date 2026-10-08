@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Close every Hyprland window except the currently focused one.
+# Used by the Ctrl-W window submap's `o` (only) binding.
+set -euo pipefail
+
+active=$(hyprctl activewindow -j | jq -r '.address')
+if [[ -z $active || $active == null ]]; then
+  exit 0
+fi
+
+hyprctl clients -j |
+  jq -r --arg active "$active" '.[] | select(.address != $active) | .address' |
+  while read -r address; do
+    hyprctl dispatch closewindow "address:$address" >/dev/null
+  done

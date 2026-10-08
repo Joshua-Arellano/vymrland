@@ -1,0 +1,18 @@
+# Vymrland -- official repo packages.
+# Installed with: omarchy-pkg-add (pacman --needed; no-op if already present).
+# One package name per line. Comments (#) and blank lines are ignored.
+
+# TUI apps
+gitui
+cmus
+neomutt
+zellij
+tealdeer
+termusic
+
+# CLI utilities
+# NOTE: the Arch package is `git-delta`, not `delta`.
+git-delta
+
+# Browsers
+qutebrowser

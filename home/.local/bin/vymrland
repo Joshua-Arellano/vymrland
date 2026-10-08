@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Vymrland command line.
+#
+# Lives in ~/.local/bin (on PATH) rather than ~/.config/omarchy/bin, which is
+# NOT on Omarchy's PATH.
+set -euo pipefail
+
+REPO="${VYMLAND_DIR:-$HOME/Projects/vymrland}"
+
+usage() {
+  cat <<'EOF'
+Usage: vymrland <command>
+
+  update      git pull --ff-only, then re-apply
+  apply       re-apply configs, theme, hooks, and the HyprVim pin
+  uninstall   restore the last backup and remove Vymrland
+  edit        open the Vymrland repo in $EDITOR
+  path        print the repo path
+EOF
+}
+
+if [[ ! -d "$REPO" ]]; then
+  echo "vymrland: repo not found at $REPO (set VYMLAND_DIR)" >&2
+  exit 1
+fi
+
+case "${1:-}" in
+  update)
+    git -C "$REPO" pull --ff-only
+    exec "$REPO/install.sh"
+    ;;
+  apply|install)
+    exec "$REPO/install.sh"
+    ;;
+  uninstall)
+    exec "$REPO/uninstall.sh"
+    ;;
+  edit)
+    exec "${EDITOR:-nvim}" "$REPO"
+    ;;
+  path)
+    printf '%s\n' "$REPO"
+    ;;
+  ""|-h|--help|help)
+    usage
+    ;;
+  *)
+    echo "vymrland: unknown command '$1'" >&2
+    usage >&2
+    exit 1
+    ;;
+esac

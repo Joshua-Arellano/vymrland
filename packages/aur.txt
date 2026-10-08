@@ -1,0 +1,7 @@
+# Vymrland -- AUR packages.
+# Installed with: omarchy-pkg-aur-add (yay -S --needed; no-op if present).
+# One package name per line. Comments (#) and blank lines are ignored.
+
+below
+wayshot
+librewolf-tridactyl-native-bin
