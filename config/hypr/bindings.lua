@@ -14,6 +14,10 @@ hl.unbind("SUPER + W")             -- was: Close window          -> now: next wi
 hl.unbind("SUPER + L")             -- was: Toggle workspace layout -> now: focus right
 hl.unbind("SUPER + S")             -- was: Toggle scratchpad     -> now: split
 hl.unbind("SUPER + F")             -- was: Full screen           -> now: float
+hl.unbind("SUPER + V")             -- was: Universal paste       -> now: HyprVim NORMAL
+hl.unbind("SUPER + J")             -- was: Toggle window split   -> now: focus down
+hl.unbind("SUPER + K")             -- was: Keybindings           -> now: focus up
+hl.unbind("SUPER + SHIFT + SLASH") -- was: Passwords             -> now: HyprVim which-key
 hl.unbind("SUPER + TAB")           -- was: Next workspace        -> now: last workspace
 hl.unbind("SUPER + ESCAPE")        -- was: System menu           -> now: HyprVim exit
 hl.unbind("SUPER + SHIFT + F")     -- was: File manager          -> now: fullscreen
@@ -50,7 +54,36 @@ o.bind("SUPER + ALT + SHIFT + S", "Move window to scratchpad", hl.dsp.window.mov
 o.bind("SUPER + SHIFT + ESCAPE",   "System menu", "omarchy-menu toggle system")
 o.bind("SUPER + CTRL + ALT + L",   "Lock system", "omarchy-system-lock")
 o.bind("SUPER + CTRL + ALT + H",   "Hardware menu", "omarchy-menu toggle hardware")
-o.bind("SUPER + SHIFT + CTRL + K", "Herdr keybindings", "omarchy-menu-herdr-keybindings")
+o.bind("SUPER + CTRL + ALT + K",   "Herdr keybindings", "omarchy-menu-herdr-keybindings")
+
+-- ===========================================================================
+-- Universal paste (moved off SUPER+V, which HyprVim now owns for NORMAL mode)
+-- ===========================================================================
+local function send_once(mods, key)
+  return function()
+    hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down" }))
+    hl.timer(function()
+      hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "up" }))
+    end, { timeout = 50, type = "oneshot" })
+  end
+end
+
+local function active_is_terminal()
+  local win = hl.get_active_window()
+  if not win then return false end
+  for _, tag in ipairs(win.tags or {}) do
+    if tostring(tag):gsub("%*$", "") == "terminal" then return true end
+  end
+  return false
+end
+
+o.bind("SUPER + ALT + V", "Universal paste", function()
+  if active_is_terminal() then
+    send_once("SHIFT", "Insert")()
+  else
+    send_once("CTRL", "V")()
+  end
+end)
 
 -- ===========================================================================
 -- Application launches

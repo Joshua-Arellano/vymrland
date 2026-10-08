@@ -36,8 +36,12 @@ Vymrland keeps Omarchy's defaults and unbinds only what it repurposes
 | `SUPER+L` | Toggle workspace layout | focus right |
 | `SUPER+S` | Toggle scratchpad | split |
 | `SUPER+F` | Full screen | float |
+| `SUPER+V` | Universal paste | HyprVim NORMAL |
+| `SUPER+J` | Toggle window split | focus down |
+| `SUPER+K` | Keybindings | focus up |
 | `SUPER+TAB` | Next workspace | last workspace |
 | `SUPER+ESC` | System menu | HyprVim exit |
+| `SUPER+SHIFT+SLASH` | Passwords | HyprVim which-key |
 | `SUPER+SHIFT+F` | File manager | fullscreen |
 | `SUPER+SHIFT+B` | Browser | previous window |
 | `SUPER+SHIFT+P` | Google Photos | pseudo |
@@ -48,9 +52,12 @@ Vymrland keeps Omarchy's defaults and unbinds only what it repurposes
 
 Added: `SUPER+Q` close, `SUPER+SHIFT+Q` quit, `SUPER+ALT+L` layout,
 `SUPER+ALT+SHIFT+S` move-to-scratchpad, `SUPER+CTRL+ALT+L` lock,
-`SUPER+CTRL+ALT+H` hardware menu, `SUPER+SHIFT+CTRL+K` Herdr keybindings,
+`SUPER+CTRL+ALT+H` hardware menu, `SUPER+CTRL+ALT+K` Herdr keybindings,
 `SUPER+b` browser, `SUPER+e` files, `SUPER+m` music, `SUPER+SHIFT+ESC` system
-menu, `SUPER+]/[` workspace cycle.
+menu, `SUPER+]/[` workspace cycle, `SUPER+ALT+V` universal paste.
+
+Keybind help moved off `SUPER+K` (now focus up); use the menu (Learn >
+Keybindings) or `omarchy-menu-keybindings`.
 
 `SUPER+y/p/x` copy/paste/cut live in **HyprVim NORMAL mode only** (not global);
 Omarchy's `SUPER+C/V/X` universal clipboard is untouched. `SUPER+V` enters
@@ -131,6 +138,19 @@ zsh config is already in place (`~/.config/zsh/.zshrc`, `~/.zshenv` sets
   (`home/.local/bin/` in this repo).
 - **`omarchy-done ensure` returns non-zero when a marker exists** (noclobber
   under `set -e`); use `check`/`mark`, never `ensure`.
+
+## Launcher menu (Super+Space)
+
+`Setup > Vymrland` adds:
+
+- **Configs** — open the repo files in the editor: Keybindings
+  (`hyprland.lua`, `bindings.lua`, `keymaps/global.lua`, `submaps/ctrlw.lua`),
+  Zellij, Neovim, Shell, and the whole repo.
+- **Set cyan theme**
+- **TUI apps** — btop, yazi, gitui, cmus, neomutt, zellij, termusic
+- **Update** (git pull + apply) / **Reinstall** (re-apply)
+- **ROG Z13** — asusctl profiles, battery limit, keyboard backlight (top-level
+  `rog` submenu)
 
 ## Phases
 

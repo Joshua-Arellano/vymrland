@@ -16,10 +16,30 @@
     "label": "Configs",
     "title": "Vymrland Configs"
   },
-  "setup.vymrland.configs.hypr": {
+  "setup.vymrland.configs.keybinds": {
     "icon": "",
-    "label": "Hyprland",
-    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/hypr\""
+    "label": "Keybindings",
+    "title": "Keybindings"
+  },
+  "setup.vymrland.configs.keybinds.hyprland": {
+    "icon": "",
+    "label": "hyprland.lua",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/hypr/hyprland.lua\""
+  },
+  "setup.vymrland.configs.keybinds.bindings": {
+    "icon": "",
+    "label": "bindings.lua",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/hypr/bindings.lua\""
+  },
+  "setup.vymrland.configs.keybinds.global": {
+    "icon": "",
+    "label": "keymaps/global.lua",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/hypr/keymaps/global.lua\""
+  },
+  "setup.vymrland.configs.keybinds.ctrlw": {
+    "icon": "",
+    "label": "submaps/ctrlw.lua",
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/hypr/keymaps/submaps/ctrlw.lua\""
   },
   "setup.vymrland.configs.zellij": {
     "icon": "",
@@ -29,7 +49,7 @@
   "setup.vymrland.configs.nvim": {
     "icon": "",
     "label": "Neovim",
-    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/nvim\""
+    "action": "omarchy-launch-config-editor \"$HOME/Projects/vymrland/config/nvim/lua/config/keymaps.lua\""
   },
   "setup.vymrland.configs.shell": {
     "icon": "",

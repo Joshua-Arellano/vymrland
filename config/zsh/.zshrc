@@ -35,10 +35,9 @@ alias cat='bat --paging=never'
 alias grep='rg'
 alias lg='lazygit'
 
-# Auto-start tmux in Ghostty terminals (ported from ~/.bashrc). Skipped when
-# already inside tmux or a nested shell. Remove this block to use zellij
-# manually instead.
-if [[ -z $TMUX && -z $OMARCHY_AUTO_TMUX && $TERM_PROGRAM == ghostty ]]; then
-  export OMARCHY_AUTO_TMUX=1
-  tmux new-session -A -s main
+# Auto-start zellij in Ghostty terminals. Skipped when already inside a zellij
+# session or a nested shell. Remove this block to start zellij manually.
+if [[ -z $ZELLIJ && -z $VYMLAND_AUTO_ZELLIJ && $TERM_PROGRAM == ghostty ]]; then
+  export VYMLAND_AUTO_ZELLIJ=1
+  zellij attach --create main
 fi
